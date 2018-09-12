@@ -9,6 +9,7 @@ myWebsiteApp.config(['$routeProvider', function($routeProvider){
 	})
     .when("/about", {
 		templateUrl: 'pages/about.html',
+        
 	})
     .when("/portfolio", {
 		templateUrl: 'pages/portfolio.html',
@@ -16,10 +17,18 @@ myWebsiteApp.config(['$routeProvider', function($routeProvider){
     .when("/contact", {
 		templateUrl: 'pages/contact.html',
 	})
+    .when("/resume", {
+		templateUrl: 'pages/resume.html',
+	})
 }]);
 
 //Controllers
-myWebsiteApp.controller('mainController', ['$scope', '$rootScope','$routeParams','$route','$location', function($scope, $rootScope, $routeParams, $route, $location){
-    
+myWebsiteApp.controller('mainController', ['$scope', function($scope){
 
 }]);
+
+
+////Controllers
+//myWebsiteApp.controller('mainController', ['$scope', '$rootScope','$routeParams','$route','$location', function($scope, $rootScope, $routeParams, $route, $location){
+//
+//}]);
