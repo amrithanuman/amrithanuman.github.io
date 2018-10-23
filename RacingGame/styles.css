@@ -1,0 +1,108 @@
+body{
+	margin:0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+	margin: 0;
+	padding: 40px 15px 15px 15px;
+	font-size: 300%;
+}
+
+button{
+	padding: 10px;
+	width: 20%;
+	background-color: #87ceeb;
+	border: 2px solid white;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 100%;
+	margin:0 5px;
+	position: relative;
+	border-radius: 50px;
+}
+
+button:hover{
+	background-color: white;
+	color: #87ceeb;
+}
+
+button:active{
+	top:1px;
+}
+
+#banner{
+	width: 100%;
+	height: 270px;
+	background-color: #87ceeb;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#info{
+	padding-top: 20px;
+	font-size: 200%;
+}
+
+#racetrack{
+	width: 95%;
+	display: inline-block;
+	float: left;
+}
+
+.track{
+	height: 120px;
+	background-color: #efa540;
+}
+
+.grass{
+	height: 50px;
+	background-color: #63ca00;
+}
+
+#finishLine{
+	width:5%;
+	height: 390px;
+	display: inline-block;
+	float:right;
+	background-color: #FF0000;
+	writing-mode: vertical-rl;
+	text-align: center;
+	text-transform: uppercase;
+	color: gold;
+	letter-spacing: 40px;
+	padding-top: 40px;
+	box-sizing: border-box;
+}
+
+.howToPlay{
+	text-transform: uppercase;
+	display: inline-block;
+	text-align: center;
+	display: none;
+	position: relative;
+	left: 50px;
+	top: -20px;
+}
+
+#turtlebtn{
+	top: -35px;
+}
+
+img{
+	width:150px;
+}
+
+#turtle{
+	position: relative;
+	top: 5px;
+	left: 10px;
+}
+
+#snail{
+	position: relative;
+	top: 15px;
+	left: 10px;
+}
