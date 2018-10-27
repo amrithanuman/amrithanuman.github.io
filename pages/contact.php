@@ -78,7 +78,25 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="col-lg-8">
                     <div id="message">
-                        
+                        <form action="contact.php" method="POST">
+                            <div class="form-group">
+                                <label for="nameField">Name</label><?php echo $nameError ?>
+                                <input type="text" class="form-control" id="nameField" name="fullName">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailField">Email address</label><?php echo $emailError ?>
+                                <input type="email" class="form-control" id="emailField" aria-describedby="emailHelp" name="senderEmail">
+                            </div>
+                            <div class="form-group">
+                                <label for="subjectField">Subject</label><?php echo $subjectError ?>
+                                <input type="text" class="form-control" id="subjectField" name="subjectTitle">
+                            </div>
+                            <div class="form-group">
+                                <label for="messageField">Message</label><?php echo $messageError ?>
+                                <textarea class="form-control" id="messageField" rows="3" name="messageContent"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>           
                     </div> 
                 </div>              
             </div>
