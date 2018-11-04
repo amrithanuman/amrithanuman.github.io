@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="col-lg-8">
                     <div id="message">
-                        <form action="#!/contact" method="POST">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                             <div class="form-group">
                                 <label for="nameField">Name:</label><?php echo " " . $nameError ?>
                                 <input type="text" class="form-control" id="nameField" name="fullName" value="<?php echo $fullName;?>">
