@@ -1,10 +1,12 @@
 <?php
 
 //define variables and set to empty
-$fullname = $from = $subjectTitle = $messageContent = "";
+$fullName = $from = $subjectTitle = $messageContent = $message = "";
 
 //error messages
-$nameError = $emailError = $subjectError = $messageError = "";
+$nameError = $emailError = $subjectError = $messageError = $messageSent = "";
+
+//
 
 //function to validate form data
 function validateFormData($formData){
@@ -12,45 +14,47 @@ function validateFormData($formData){
     return $formData;        
 }
 
-if(isset($_POST['submit'])){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
 //validate data
-    if(!$_POST["fullname"]){
+    if(empty($_POST["fullName"])){
         $nameError = "Please enter your name.";
     }
     else{
-        $full_name = validateFormData($_POST['fullName']);
+        $fullName = validateFormData($_POST['fullName']);
     }
 
-    if(!$_POST["senderEmail"]){
+    if(empty($_POST["senderEmail"])){
         $emailError = "Please enter an email address.";
     }
     else{
         $from = validateFormData($_POST['senderEmail']);
     }
     
-    if(!$_POST["subjectTitle"]){
+    if(empty($_POST["subjectTitle"])){
         $subjectError = "Please enter a subject title.";
     }
     else{
-        $subject = validateFormData($_POST['subjectTitle']);
+        $subjectTitle = validateFormData($_POST['subjectTitle']);
     }
     
-    if(!$_POST["messageContent"]){
+    if(empty($_POST["messageContent"])){
         $messageError = "Please enter your message.";
     }
     else{
-        $message = $full_name . "wrote the following:" . "\r\n\n" . validateFormData($_POST['messageContent']);
+        $messageContent = validateFormData($_POST['messageContent']);
+        $message = $fullName . " wrote the following:" . "\r\n\n" . $messageContent;
     }
 
-
-    $to = "amrit2025@hotmail.com"; // this is your Email address  
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From:" . $from . "\r\n";
-    
-    mail($to,$subject,$message,$headers);
-    echo "Mail Sent. Thank you " . $full_name . ", I will contact you shortly.";
-    }
+    if($fullName && $from && $subjectTitle && $messageContent){
+        $to = "amrit2025@hotmail.com"; // this is your Email address  
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= "From:" . $from . "\r\n";
+        
+        mail($to,$subjectTitle,$message,$headers);
+        $messageSent = "Mail Sent. Thank you " . $fullName . ", I will contact you shortly.";
+    }   
+}
 ?>
 
 <main id="contact">
@@ -59,7 +63,7 @@ if(isset($_POST['submit'])){
         <h1>Contact Me</h1>
         </div>
         </div>
-        <div class="whitespace"></div>
+        <div class="whitespace"><?php echo $messageSent ?></div>
 
         <div class="container">
             <div class="row">
@@ -78,22 +82,22 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="col-lg-8">
                     <div id="message">
-                        <form action="contact.php" method="POST">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                             <div class="form-group">
-                                <label for="nameField">Name</label><?php echo $nameError ?>
-                                <input type="text" class="form-control" id="nameField" name="fullName">
+                                <label for="nameField">Name:</label><?php echo " " . $nameError ?>
+                                <input type="text" class="form-control" id="nameField" name="fullName" value="<?php echo $fullName;?>">
                             </div>
                             <div class="form-group">
-                                <label for="emailField">Email address</label><?php echo $emailError ?>
-                                <input type="email" class="form-control" id="emailField" aria-describedby="emailHelp" name="senderEmail">
+                                <label for="emailField">Email address:</label><?php echo " " . $emailError ?>
+                                <input type="email" class="form-control" id="emailField" aria-describedby="emailHelp" name="senderEmail" value="<?php echo $from;?>">
                             </div>
                             <div class="form-group">
-                                <label for="subjectField">Subject</label><?php echo $subjectError ?>
-                                <input type="text" class="form-control" id="subjectField" name="subjectTitle">
+                                <label for="subjectField">Subject:</label><?php echo " " . $subjectError ?>
+                                <input type="text" class="form-control" id="subjectField" name="subjectTitle" value="<?php echo $subjectTitle;?>">
                             </div>
                             <div class="form-group">
-                                <label for="messageField">Message</label><?php echo $messageError ?>
-                                <textarea class="form-control" id="messageField" rows="3" name="messageContent"></textarea>
+                                <label for="messageField">Message:</label><?php echo " " . $messageError ?>
+                                <textarea class="form-control" id="messageField" rows="3" name="messageContent"><?php echo $messageContent;?></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>           
