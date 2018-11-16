@@ -14,9 +14,6 @@ myWebsiteApp.config(['$routeProvider', function($routeProvider){
     .when("/portfolio", {
 		templateUrl: 'pages/portfolio.html',
 	})
-    .when("/contact", {
-		templateUrl: 'pages/contact.php',
-	})
     .when("/resume", {
 		templateUrl: 'pages/resume.html',
 	})
